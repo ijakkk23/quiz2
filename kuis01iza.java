@@ -6,23 +6,29 @@ public class kuis01iza {
         int jam;
         int total = 0;
         int jumlahKendaraan = 0;
+        int parkirterlama = -1;
 
-        System.out.print("Lama parkir (jam, 0 = selesai): ");
-        jam = sc.nextInt();
 
         do {
+            System.out.print("Lama parkir (jam, 0 = selesai): ");
+            jam = sc.nextInt();
+            if (jam < 0 || jam > 24) {
+                System.out.println("Input tidak valid. Silakan masukkan jam parkir yang benar.");
+                continue;
+            }
             // Tarif: jam pertama Rp 5000, jam berikutnya Rp 3000 per jam
             int biaya = 5000 + (jam - 1) * 3000;
             total += biaya;
-            System.out.println("Biaya parkir: Rp " + biaya);
-            System.out.print("Lama parkir (jam, 0 = selesai): ");
-            jam = sc.nextInt(); 
             jumlahKendaraan++;
+        if (jam > parkirterlama) {
+            parkirterlama = jam;
+        }
         } while (jam != 0);
        
 
         System.out.println("=== RINGKASAN ===");
         System.out.println("Jumlah kendaraan : " + jumlahKendaraan);
         System.out.println("Total pemasukan  : Rp " + total);
+        System.out.println("Lama parkir terlama : " + parkirterlama + " jam");
     }
 }
